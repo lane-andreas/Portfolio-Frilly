@@ -32,6 +32,7 @@ body {
 }
 @keyframes loaderout {
   from {
+    outline: max(100vw, 100vh) solid white;
     outline-offset: max(-100vw, -100vh);
     pointer-events: all;
   }
@@ -43,19 +44,20 @@ body {
 }
 @keyframes loaderin {
   from {
-    outline: 0 solid white;
-
+    outline-offset: 0;
     pointer-events: none;
+    outline: 0 solid white;
   }
   to {
     outline: max(100vw, 100vh) solid white;
+    outline-offset: max(-100vw, -100vh);
     pointer-events: all;
   }
 }
 #menu {
   position: absolute;
   top: -3em;
-
+  cursor: pointer;
   z-index: 20;
   font-size: calc(2rem + 3vw);
   width: 2em;
@@ -86,7 +88,7 @@ body {
     background: var(--color-4);
   }
 }
-& #menu::before {
+#menu::before {
   content: "MENU";
   position: absolute;
   top: 100%;
@@ -95,6 +97,10 @@ body {
   font-size: 0.5em;
   font-weight: 800;
   color: var(--accent-mod);
+  transition: scale 0.3s;
+}
+#menu:hover::before {
+  scale: 1.05;
 }
 
 .box {
@@ -174,15 +180,18 @@ body {
   }
   #box2 {
     top: 25vh;
+    top: 25lvh;
     right: unset;
     left: 0;
   }
   #box3 {
     top: 50vh;
+    top: 50lvh;
     bottom: unset;
   }
   #box4 {
     top: 75vh;
+    top: 75lvh;
     bottom: unset;
     right: unset;
     left: 0;
