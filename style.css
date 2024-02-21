@@ -41,7 +41,7 @@ body {
   border-left: 50vw solid white;
   border-top: 50vh solid white;
   border-bottom: 50vh solid white;
-  animation: loaderout 1s forwards;
+  animation: loaderout 1s 0.5s forwards;
   pointer-events: none;
 }
 @keyframes loaderout {
