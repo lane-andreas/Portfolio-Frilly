@@ -16,8 +16,17 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+.smooth-scroll-wrapper {
+  min-height: 100vh;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   overflow-x: clip;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
 #loader {
   position: fixed;

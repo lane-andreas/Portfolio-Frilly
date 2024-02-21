@@ -93,16 +93,20 @@ function makeElementCoverViewportOnClick(element, absolute, colorM) {
     element.style.zIndex = "10";
     element.style.transition = "width 1s, height 1s, top 1s";
     element.style.cursor = "unset";
+
     if (window.innerWidth < 800) {
       element.style.top = 0;
+
       element.querySelector("p").style.transition = "padding-top 1s";
       element.querySelector("p").style.paddingTop = "4em";
     }
     setTimeout(function () {
       menu.style.pointerEvents = "all";
       element.style.transition = "none";
-
+      element.style.height = "130vh";
+      element.style.bottom = "unset";
       menu.style.top = 0;
+      element.querySelector("p").style.paddingBottom = "30vh";
       menu.style.transition = "top 1s";
       setTimeout(function () {
         menu.style.transition = "none";
@@ -129,6 +133,14 @@ menu.addEventListener("click", function () {
     box2.style.zIndex = "1";
     box3.style.zIndex = "1";
     box4.style.zIndex = "1";
+    box1.style.removeProperty("bottom");
+    box2.style.removeProperty("bottom");
+    box3.style.removeProperty("bottom");
+    box4.style.removeProperty("bottom");
+    box1.querySelector("p").style.removeProperty("padding-bottom");
+    box2.querySelector("p").style.removeProperty("padding-bottom");
+    box3.querySelector("p").style.removeProperty("padding-bottom");
+    box4.querySelector("p").style.removeProperty("padding-bottom");
     box1.style.pointerEvents = "all";
     box2.style.pointerEvents = "all";
     box3.style.pointerEvents = "all";
@@ -159,3 +171,22 @@ menu.addEventListener("click", function () {
     resumeAnimation();
   }, 1000);
 });
+const body = document.body,
+  scrollWrap = document.getElementsByClassName("smooth-scroll-wrapper")[0],
+  height = scrollWrap.getBoundingClientRect().height - 1,
+  speed = 0.04;
+
+var offset = 0;
+
+body.style.height = Math.floor(height) + "px";
+
+function smoothScroll() {
+  offset += (window.pageYOffset - offset) * speed;
+
+  var scroll = "translateY(-" + offset + "px) translateZ(0)";
+  scrollWrap.style.transform = scroll;
+
+  callScroll = requestAnimationFrame(smoothScroll);
+}
+
+smoothScroll();
