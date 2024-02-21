@@ -34,33 +34,42 @@ body {
   height: 100vh;
   top: 0;
   right: 0;
-  outline: max(100vw, 100vh) solid white;
-  outline-offset: max(-100vw, -100vh);
+  left: 0;
+  bottom: 0;
   z-index: 100;
+  border-right: 50vw solid white;
+  border-left: 50vw solid white;
+  border-top: 50vh solid white;
+  border-bottom: 50vh solid white;
   animation: loaderout 1s forwards;
+  pointer-events: none;
 }
 @keyframes loaderout {
   from {
-    outline: max(100vw, 100vh) solid white;
-    outline-offset: max(-100vw, -100vh);
-    pointer-events: all;
+    border-right: 50vw solid white;
+    border-left: 50vw solid white;
+    border-top: 50vh solid white;
+    border-bottom: 50vh solid white;
   }
   to {
-    outline-offset: 0;
-    pointer-events: none;
-    outline: 0 solid white;
+    border-right: 0 solid white;
+    border-left: 0 solid white;
+    border-top: 0 solid white;
+    border-bottom: 0 solid white;
   }
 }
 @keyframes loaderin {
   from {
-    outline-offset: 0;
-    pointer-events: none;
-    outline: 0 solid white;
+    border-right: 0 solid white;
+    border-left: 0 solid white;
+    border-top: 0 solid white;
+    border-bottom: 0 solid white;
   }
   to {
-    outline: max(100vw, 100vh) solid white;
-    outline-offset: max(-100vw, -100vh);
-    pointer-events: all;
+    border-right: 50vw solid white;
+    border-left: 50vw solid white;
+    border-top: 50vh solid white;
+    border-bottom: 50vh solid white;
   }
 }
 #menu {

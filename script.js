@@ -126,7 +126,7 @@ menu.addEventListener("click", function () {
   box3.style.pointerEvents = "none";
   box4.style.pointerEvents = "none";
   menu.style.pointerEvents = "none";
-  loader.style.animation = "loaderin 1.5s forwards";
+  loader.style.animation = "loaderin .75s forwards";
   setTimeout(function () {
     menu.style.top = "-3em";
     box1.style.zIndex = "1";
@@ -149,7 +149,7 @@ menu.addEventListener("click", function () {
     box2.style.cursor = "pointer";
     box3.style.cursor = "pointer";
     box4.style.cursor = "pointer";
-    loader.style.animation = "loaderout 1s forwards";
+    loader.style.animation = "loaderout .75s forwards";
     if (window.innerWidth < 800) {
       box1.querySelector("p").style.removeProperty("transition");
       box1.querySelector("p").style.paddingTop = "0";
