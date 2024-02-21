@@ -139,13 +139,13 @@ menu.addEventListener("click", function () {
     box4.style.cursor = "pointer";
     loader.style.animation = "loaderout 1s forwards";
     if (window.innerWidth < 800) {
-      box1.querySelector("p").style.transition = "none";
+      box1.querySelector("p").style.removeProperty("transition");
       box1.querySelector("p").style.paddingTop = "0";
-      box2.querySelector("p").style.transition = "none";
+      box2.querySelector("p").style.removeProperty("transition");
       box2.querySelector("p").style.paddingTop = "0";
-      box3.querySelector("p").style.transition = "none";
+      box3.querySelector("p").style.removeProperty("transition");
       box3.querySelector("p").style.paddingTop = "0";
-      box4.querySelector("p").style.transition = "none";
+      box4.querySelector("p").style.removeProperty("transition");
       box4.querySelector("p").style.paddingTop = "0";
       box1.style.removeProperty("top");
       box2.style.removeProperty("top");

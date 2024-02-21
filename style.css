@@ -168,6 +168,12 @@ body {
   }
 }
 
+@media (width >= 800px) {
+  .box p {
+    padding-top: 0;
+  }
+}
+
 @media (width < 800px) {
   .box {
     font-size: calc(2rem + 3vw);
