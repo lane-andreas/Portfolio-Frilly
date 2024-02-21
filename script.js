@@ -4,6 +4,7 @@ const box3 = document.getElementById("box3");
 const box4 = document.getElementById("box4");
 const menu = document.getElementById("menu");
 const loader = document.getElementById("loader");
+const mouse = document.getElementById("mouse");
 let isPaused = false;
 
 let box1X = 0,
@@ -25,14 +26,22 @@ let box1Width = 0,
 
 let mouseX = 0;
 let mouseY = 0;
+let lastMouseX = 0;
+let lastMouseY = 0;
+if (window.innerWidth >= 800) {
+  document.addEventListener("mousemove", function (event) {
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
+    mouseX = event.clientX / 2 + window.innerWidth / 4;
+    mouseY = event.clientY / 2 + window.innerHeight / 4;
+    mouse.style.left = lastMouseX + "px";
+    mouse.style.top = lastMouseY + offset + "px";
 
-document.addEventListener("mousemove", function (event) {
-  mouseX = event.clientX / 2 + window.innerWidth / 4;
-  mouseY = event.clientY / 2 + window.innerHeight / 4;
-  if (window.innerWidth >= 800) {
-    updateAnimationTargets();
-  }
-});
+    if (window.innerWidth >= 800) {
+      updateAnimationTargets();
+    }
+  });
+}
 
 function updateAnimationTargets() {
   const vw = window.innerWidth;
@@ -92,7 +101,6 @@ function makeElementCoverViewportOnClick(element, absolute, colorM) {
     element.style.height = "100vh";
     element.style.zIndex = "10";
     element.style.transition = "width 1s, height 1s, top 1s";
-    element.style.cursor = "unset";
 
     if (window.innerWidth < 800) {
       element.style.top = 0;
@@ -145,10 +153,7 @@ menu.addEventListener("click", function () {
     box2.style.pointerEvents = "all";
     box3.style.pointerEvents = "all";
     box4.style.pointerEvents = "all";
-    box1.style.cursor = "pointer";
-    box2.style.cursor = "pointer";
-    box3.style.cursor = "pointer";
-    box4.style.cursor = "pointer";
+
     loader.style.animation = "loaderout .75s forwards";
     if (window.innerWidth < 800) {
       box1.querySelector("p").style.removeProperty("transition");
@@ -174,18 +179,20 @@ menu.addEventListener("click", function () {
 const body = document.body,
   scrollWrap = document.getElementsByClassName("smooth-scroll-wrapper")[0],
   height = scrollWrap.getBoundingClientRect().height - 1,
-  speed = 0.04;
+  speedScroll = 0.04;
 
 var offset = 0;
 
 body.style.height = Math.floor(height) + "px";
 
 function smoothScroll() {
-  offset += (window.pageYOffset - offset) * speed;
+  offset += (window.pageYOffset - offset) * speedScroll;
 
-  var scroll = "translateY(-" + offset + "px) translateZ(0)";
-  scrollWrap.style.transform = scroll;
-
+  var scroll = "0 -" + offset + "px";
+  scrollWrap.style.translate = scroll;
+  if (window.innerWidth >= 800) {
+    mouse.style.top = lastMouseY + offset * 2 + "px";
+  }
   callScroll = requestAnimationFrame(smoothScroll);
 }
 
