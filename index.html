@@ -49,7 +49,10 @@
               ><iconify-icon icon="material-symbols:call"></iconify-icon></a
             ><a class="icon hover" href="mailto:laaaandreas@gmail.com"
               ><iconify-icon icon="mdi:email"></iconify-icon></a
-            ><a class="icon hover" href="http://fizzsnapwebsites.com/"
+            ><a
+              class="icon hover"
+              href="http://fizzsnapwebsites.com/"
+              target="_blank"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 320 234"
@@ -61,8 +64,12 @@
             ><a
               class="icon hover"
               href="http://linkedin.com/in/lane-andreas-891263226/"
+              target="_blank"
               ><iconify-icon icon="mdi:linkedin"></iconify-icon></a
-            ><a class="icon hover" href="http://github.com/lane-andreas"
+            ><a
+              class="icon hover"
+              href="http://github.com/lane-andreas"
+              target="_blank"
               ><iconify-icon icon="mdi:github"></iconify-icon
             ></a>
           </div>
@@ -90,7 +97,9 @@
             If you want to know about my skills and experience, click the button
             below.
           </p>
-          <button class="hover">The skills and experience button.</button>
+          <button class="hover" id="to-skills">
+            The skills and experience button.
+          </button>
           <a href="#top" class="back-to-top hover"></a>
           <div class="dec1 move1"></div>
           <div class="dec2 move2"></div>
@@ -120,7 +129,9 @@
             volutpat. Consequat tellus vitae amet sed cras turpis. psum augue
             nec et magna gravida erat urna. Cras aliquet mus tortor volutpat.
           </p>
-          <button class="hover">The other button button.</button>
+          <button class="hover" id="to-projects">
+            The other button button.
+          </button>
           <a href="#top" class="back-to-top hover"></a>
           <div class="dec3 move1"></div>
           <div class="dec4 move2"></div>
@@ -129,7 +140,7 @@
       <section id="projects" class="hidden">
         <div class="con1">
           <div class="project">
-            <div class="window"></div>
+            <div class="window"><p>COMING SOON</p></div>
             <div class="skills-list">
               <div class="skill">
                 <iconify-icon icon="mdi:language-html5"></iconify-icon>HTML
@@ -143,11 +154,12 @@
               </div>
             </div>
             <div class="link-list">
-              <a href="">View the code.</a><a href="">Visit the site.</a>
+              <a href="" class="hover" target="_blank">View the code.</a
+              ><a href="" class="hover" target="_blank">Visit the site.</a>
             </div>
           </div>
           <div class="project">
-            <div class="window"></div>
+            <div class="window"><p>COMING SOON</p></div>
             <div class="skills-list">
               <div class="skill">
                 <iconify-icon icon="mdi:language-html5"></iconify-icon>HTML
@@ -161,11 +173,12 @@
               </div>
             </div>
             <div class="link-list">
-              <a href="">View the code.</a><a href="">Visit the site.</a>
+              <a href="" class="hover" target="_blank">View the code.</a
+              ><a href="" class="hover" target="_blank">Visit the site.</a>
             </div>
           </div>
           <div class="project">
-            <div class="window"></div>
+            <div class="window"><p>COMING SOON</p></div>
             <div class="skills-list">
               <div class="skill">
                 <iconify-icon icon="mdi:language-html5"></iconify-icon>HTML
@@ -179,7 +192,8 @@
               </div>
             </div>
             <div class="link-list">
-              <a href="">View the code.</a><a href="">Visit the site.</a>
+              <a href="" class="hover" target="_blank">View the code.</a
+              ><a href="" class="hover" target="_blank">Visit the site.</a>
             </div>
           </div>
           <div class="dec5 move1"></div>
@@ -192,15 +206,84 @@
             volutpat. Consequat tellus vitae amet sed cras turpis. psum augue
             nec et magna gravida erat urna. Cras aliquet mus tortor volutpat.
           </p>
-          <button class="hover">Contact me!</button>
+          <button class="hover" id="to-contact">Contact me!</button>
           <a href="#top" class="back-to-top hover"></a>
           <div class="dec5 move1"></div>
           <div class="dec6 move2"></div>
         </div>
       </section>
+      <section id="contact" class="hidden">
+        <div class="con1">
+          <p class="hide-br">
+            Have a question? Give me a message.<br class="hide" />
+            I'm open to work inquiries and conversation.
+          </p>
+
+          <form
+            action="https://formsubmit.co/laaaandreas@gmail.com"
+            method="POST"
+          >
+            <input
+              placeholder="Name*"
+              type="text"
+              name="name"
+              id="name"
+              autocomplete="name"
+              aria-label="Enter your name here"
+              required
+            />
+
+            <input
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="email"
+              aria-label="Enter your email here"
+            />
+
+            <input
+              placeholder="Phone"
+              type="phone"
+              name="phone"
+              id="phone"
+              autocomplete="phone"
+              aria-label="Enter your phone here"
+            />
+
+            <textarea
+              placeholder="Message*"
+              id="message"
+              name="message"
+              rows="1"
+              aria-label="Enter your message here"
+              required
+            ></textarea>
+
+            <button type="submit" class="hover">Send</button>
+          </form>
+          <svg
+            version="1.1"
+            class="dec7 move1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 490 490"
+          >
+            <polygon points="245,456.701 490,33.299 0,33.299 " />
+          </svg>
+          <svg
+            version="1.1"
+            class="dec8 move2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 490 490"
+          >
+            <polygon points="245,456.701 490,33.299 0,33.299 " />
+          </svg>
+        </div>
+      </section>
+
       <footer class="hidden">
         <p class="copyright">Copyright @ 2023 Lane Andreas</p>
-        <p class="pp hover">Privacy Policy</p>
+        <p class="pp hover" target="_blank">Privacy Policy</p>
       </footer>
     </div>
     <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>

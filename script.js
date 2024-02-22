@@ -162,13 +162,15 @@ const startWidth = window.innerWidth;
 function updateDisplayOnThresholdCross() {
   if (startWidth >= 800) {
     if (window.innerWidth < 800) {
-      document.querySelector("#page-threshold").style.display = "flex";
+      document.querySelector("#page-threshold").style.opacity = "100%";
+      document.querySelector("#page-threshold").style.pointerEvents = "none";
     }
   }
 
   if (startWidth < 800) {
     if (window.innerWidth >= 800) {
-      document.querySelector("#page-threshold").style.display = "flex";
+      document.querySelector("#page-threshold").style.opacity = "100%";
+      document.querySelector("#page-threshold").style.pointerEvents = "none";
     }
   }
 }
@@ -182,12 +184,16 @@ updateDisplayOnThresholdCross();
 function headerExpand(element, absolute, area, accent1, accent2) {
   element.addEventListener("click", function () {
     pauseAnimation();
+    if (element == box4) {
+      document.querySelector("footer").style.backgroundColor = "var(--color-4)";
+      document.querySelector("footer").style.color = "var(--color-1)";
+    }
     root.style.setProperty("--accent-1", accent1);
     root.style.setProperty("--accent-2", accent2);
 
     menu.style.display = "block";
-    menu.style.removeProperty("left");
-    menu.style.removeProperty("right");
+    menu.style.left = "";
+    menu.style.right = "";
     menu.style[absolute] = 0;
     addToBoxes("pointerEvents", "none");
     element.style.width = "100vw";
@@ -226,7 +232,9 @@ menu.addEventListener("click", function () {
   menu.style.pointerEvents = "none";
   loader.style.animation = "loaderin .75s forwards";
   setTimeout(function () {
-    addToAny(h1s, "paddingBottom", "0");
+    document.querySelector("footer").style.backgroundColor = "";
+    document.querySelector("footer").style.color = "";
+    removeFromAny(h1s, "paddingBottom");
     addToAny(hiddens, "display", "none");
     menu.style.top = "-3em";
     addToBoxes("zIndex", 1);
@@ -244,7 +252,7 @@ menu.addEventListener("click", function () {
 
 function removeFromBoxes(propertyName) {
   boxes.forEach((box) => {
-    box.style.removeProperty(propertyName);
+    box.style[propertyName] = "";
   });
 }
 function addToBoxes(propertyName, property) {
@@ -267,7 +275,7 @@ document.getElementById("eyeball").addEventListener("click", function () {
 
 function removeFromAny(listName, propertyName) {
   listName.forEach((item) => {
-    item.style.removeProperty(propertyName);
+    item.style[propertyName] = "";
   });
 }
 function addToAny(listName, propertyName, property) {
@@ -275,3 +283,37 @@ function addToAny(listName, propertyName, property) {
     item.style[propertyName] = property;
   });
 }
+
+function scrollToElementAndClick(box) {
+  document.querySelector("#page-threshold").style.pointerEvents = "all";
+
+  document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+
+  setTimeout(function () {
+    menu.click();
+    setTimeout(function () {
+      box.click();
+
+      setTimeout(function () {
+        document.querySelector("#page-threshold").style.pointerEvents = "none";
+      }, 2000);
+    }, 2000);
+  }, 1000);
+}
+
+document.getElementById("to-skills").addEventListener("click", function () {
+  scrollToElementAndClick(box2);
+});
+
+document.getElementById("to-projects").addEventListener("click", function () {
+  scrollToElementAndClick(box3);
+});
+
+document.getElementById("to-contact").addEventListener("click", function () {
+  scrollToElementAndClick(box4);
+});
+const textarea = document.getElementById("message");
+
+textarea.addEventListener("input", function () {
+  textarea.style.height = textarea.scrollHeight + "px";
+});
