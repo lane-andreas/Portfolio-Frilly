@@ -7,6 +7,7 @@ const loader = document.querySelector("#loader");
 const mouse = document.querySelector("#mouse");
 const boxes = document.querySelectorAll(".box");
 const hiddens = document.querySelectorAll(".hidden");
+const h1s = document.querySelectorAll("h1");
 const root = document.documentElement;
 
 // ANIMATIONS //
@@ -204,6 +205,7 @@ function headerExpand(element, absolute, area, accent1, accent2) {
       element.style.bottom = "unset";
       menu.style.top = 0;
       menu.style.transition = "top 1s";
+      addToAny(h1s, "paddingBottom", "10px");
       document.querySelector("footer").style.display = "flex";
       document.querySelector("#icon-list").style.display = "flex";
       document.querySelector(area).style.display = "block";
@@ -224,6 +226,7 @@ menu.addEventListener("click", function () {
   menu.style.pointerEvents = "none";
   loader.style.animation = "loaderin .75s forwards";
   setTimeout(function () {
+    addToAny(h1s, "paddingBottom", "0");
     addToAny(hiddens, "display", "none");
     menu.style.top = "-3em";
     addToBoxes("zIndex", 1);

@@ -388,7 +388,7 @@ section {
     background-color: var(--accent-1);
     padding-bottom: 11em;
   }
-  .con2 button:first-of-type {
+  & button {
     padding: 0.4em 0.8em;
     font-weight: 250;
     font-size: var(--small);
@@ -486,21 +486,6 @@ footer {
 }
 
 @media (width < 800px) {
-  footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3em;
-  }
-  .con1 .dec1 {
-    left: 90% !important;
-  }
-  .con2 .dec1 {
-    bottom: -10em !important;
-  }
-  .con2 .dec2 {
-    bottom: -12em !important;
-  }
-
   .con1 .dec3 {
     right: 88% !important;
   }
@@ -513,4 +498,113 @@ footer {
 .hidden,
 #icon-list {
   display: none;
+}
+
+.project {
+  margin-bottom: 3em;
+  font-size: var(--small);
+  font-weight: 250;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(1100px, 100%);
+  margin-inline: auto;
+  .window {
+    z-index: 25;
+    background-color: var(--accent-1);
+    width: 100%;
+    aspect-ratio: 16 / 7;
+  }
+  .skills-list {
+    z-index: 25;
+    align-self: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    padding: 0.6em 0;
+  }
+  .skill {
+    z-index: 25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & iconify-icon {
+    z-index: 25;
+    font-size: 1.6em;
+  }
+  & a {
+    z-index: 25;
+    padding: 0.4em 0.8em;
+    font-weight: 250;
+    font-size: var(--small);
+    color: var(--accent-2);
+    background-color: var(--accent-1);
+    text-decoration: none;
+    display: inline;
+  }
+  .link-list {
+    z-index: 25;
+    align-self: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    white-space: nowrap;
+  }
+}
+
+#projects {
+  .con1 .dec5 {
+    position: absolute;
+    width: 200vw;
+    background-color: var(--color-1);
+    height: 1.5em;
+    right: -50vw;
+    bottom: 50%;
+    z-index: 20;
+    rotate: 30deg;
+  }
+  .con1 .dec6 {
+    position: absolute;
+    width: 200vw;
+    background-color: var(--color-4);
+    height: 1.5em;
+    right: -50vw;
+    bottom: 55%;
+    rotate: -10deg;
+  }
+
+  .con2 .dec5 {
+    position: absolute;
+    width: 200vw;
+    background-color: var(--color-1);
+    height: 1.5em;
+    right: -50vw;
+    bottom: -10%;
+    z-index: 20;
+    rotate: 15deg;
+  }
+  .con2 .dec6 {
+    position: absolute;
+    width: 200vw;
+    background-color: var(--color-4);
+    height: 1.5em;
+    right: -50vw;
+    bottom: 17%;
+    rotate: -15deg;
+  }
+}
+
+@media (width < 800px) {
+  .con1 .dec5 {
+    bottom: 55% !important;
+  }
+
+  .con2 .dec5 {
+    bottom: 0% !important;
+  }
+
+  .con2 .dec6 {
+    bottom: 13% !important;
+  }
 }
