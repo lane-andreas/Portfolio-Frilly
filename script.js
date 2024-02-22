@@ -1,10 +1,11 @@
-const box1 = document.getElementById("box1");
-const box2 = document.getElementById("box2");
-const box3 = document.getElementById("box3");
-const box4 = document.getElementById("box4");
-const menu = document.getElementById("menu");
-const loader = document.getElementById("loader");
-const mouse = document.getElementById("mouse");
+const box1 = document.querySelector("#box1");
+const box2 = document.querySelector("#box2");
+const box3 = document.querySelector("#box3");
+const box4 = document.querySelector("#box4");
+const menu = document.querySelector("#menu");
+const loader = document.querySelector("#loader");
+const mouse = document.querySelector("#mouse");
+const boxes = document.querySelectorAll(".box");
 let isPaused = false;
 
 let box1X = 0,
@@ -38,7 +39,7 @@ if (window.innerWidth >= 800) {
     mouse.style.top = lastMouseY + offset + "px";
 
     updateAnimationTargets();
-    updateDecElements();
+    updateDec1Elements();
     updateDec2Elements();
   });
 }
@@ -91,15 +92,12 @@ function resumeAnimation() {
 function makeElementCoverViewportOnClick(element, absolute, colorM, area) {
   element.addEventListener("click", function () {
     pauseAnimation();
-
+    menu.style.display = "block";
     menu.style.removeProperty("left");
     menu.style.removeProperty("right");
     menu.style[absolute] = 0;
     document.documentElement.style.setProperty("--accent-mod", colorM);
-    box1.style.pointerEvents = "none";
-    box2.style.pointerEvents = "none";
-    box3.style.pointerEvents = "none";
-    box4.style.pointerEvents = "none";
+    addToBoxes("pointerEvents", "none");
     element.style.width = "100vw";
     element.style.height = "100vh";
     element.style.zIndex = "10";
@@ -107,20 +105,17 @@ function makeElementCoverViewportOnClick(element, absolute, colorM, area) {
 
     if (window.innerWidth < 800) {
       element.style.top = 0;
-
-      element.querySelector("h1").style.transition = "padding-top 1s";
-      element.querySelector("h1").style.paddingTop = "4em";
     }
     setTimeout(function () {
       menu.style.pointerEvents = "all";
       element.style.transition = "none";
-      element.style.height = "105vh";
+      element.style.height = "101vh";
       element.style.bottom = "unset";
       menu.style.top = 0;
-      element.querySelector("h1").style.paddingBottom = "5vh";
+      element.querySelector("h1").style.paddingBottom = "1vh";
       menu.style.transition = "top 1s";
       document.querySelector(area).style.display = "block";
-      document.querySelector("#link-list").style.display = "flex";
+      document.querySelector("#icon-list").style.display = "flex";
       setTimeout(function () {
         menu.style.transition = "none";
       }, 1000);
@@ -128,49 +123,27 @@ function makeElementCoverViewportOnClick(element, absolute, colorM, area) {
   });
 }
 
-makeElementCoverViewportOnClick(box1, "right", "#5d2a42", "#about");
-makeElementCoverViewportOnClick(box2, "left", "#fb6376");
-makeElementCoverViewportOnClick(box3, "right", "#fcb1a6");
-makeElementCoverViewportOnClick(box4, "left", "#ffdccc");
+makeElementCoverViewportOnClick(box1, "right", "var(--color-4)", "#about");
+makeElementCoverViewportOnClick(box2, "left", "var(--color-3)");
+makeElementCoverViewportOnClick(box3, "right", "var(--color-2)");
+makeElementCoverViewportOnClick(box4, "left", "var(--color-1)");
 
 menu.addEventListener("click", function () {
-  box1.style.pointerEvents = "none";
-  box2.style.pointerEvents = "none";
-  box3.style.pointerEvents = "none";
-  box4.style.pointerEvents = "none";
+  addToBoxes("pointerEvents", "none");
   menu.style.pointerEvents = "none";
   loader.style.animation = "loaderin .75s forwards";
   setTimeout(function () {
     document.querySelector("#about").style.display = "none";
-    document.querySelector("#link-list").style.display = "none";
+    document.querySelector("#icon-list").style.display = "none";
     menu.style.top = "-3em";
-    box1.style.zIndex = "1";
-    box2.style.zIndex = "1";
-    box3.style.zIndex = "1";
-    box4.style.zIndex = "1";
-    box1.style.removeProperty("bottom");
-    box2.style.removeProperty("bottom");
-    box3.style.removeProperty("bottom");
-    box4.style.removeProperty("bottom");
-    box1.querySelector("h1").style.removeProperty("padding-bottom");
-    box2.querySelector("h1").style.removeProperty("padding-bottom");
-    box3.querySelector("h1").style.removeProperty("padding-bottom");
-    box4.querySelector("h1").style.removeProperty("padding-bottom");
-    box1.style.pointerEvents = "all";
-    box2.style.pointerEvents = "all";
-    box3.style.pointerEvents = "all";
-    box4.style.pointerEvents = "all";
+    addToBoxes("zIndex", 1);
+    removeFromBoxes("bottom");
+    addToBoxes("pointerEvents", "all");
+
+    menu.style.display = "none";
 
     loader.style.animation = "loaderout .75s forwards";
     if (window.innerWidth < 800) {
-      box1.querySelector("h1").style.removeProperty("transition");
-      box1.querySelector("h1").style.paddingTop = "0";
-      box2.querySelector("h1").style.removeProperty("transition");
-      box2.querySelector("h1").style.paddingTop = "0";
-      box3.querySelector("h1").style.removeProperty("transition");
-      box3.querySelector("h1").style.paddingTop = "0";
-      box4.querySelector("h1").style.removeProperty("transition");
-      box4.querySelector("h1").style.paddingTop = "0";
       box1.style.removeProperty("top");
       box2.style.removeProperty("top");
       box3.style.removeProperty("top");
@@ -205,8 +178,8 @@ function smoothScroll() {
 
 smoothScroll();
 
-function updateDecElements() {
-  const decElements = document.querySelectorAll(".dec");
+function updateDec1Elements() {
+  const decElements = document.querySelectorAll(".dec1");
   decElements.forEach((el) => {
     const rect = el.getBoundingClientRect();
     const elX = rect.left + rect.width / 2; // Element center X
@@ -248,5 +221,16 @@ function updateDec2Elements() {
       duration: 0.5,
       ease: "power1.out",
     });
+  });
+}
+
+function removeFromBoxes(propertyName) {
+  boxes.forEach((box) => {
+    box.style.removeProperty(propertyName);
+  });
+}
+function addToBoxes(propertyName, property) {
+  boxes.forEach((box) => {
+    box.style[propertyName] = property;
   });
 }

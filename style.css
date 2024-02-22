@@ -3,11 +3,13 @@
   --color-2: #fcb1a6;
   --color-3: #fb6376;
   --color-4: #5d2a42;
-  --accent-1: #ffdccc;
-  --accent-2: #fcb1a6;
-  --accent-3: #fb6376;
-  --accent-4: #5d2a42;
-  --accent-mod: null;
+  --x-small: calc(0.5rem + 0.5vw);
+  --small: calc(1rem + 1vw);
+  --medium: calc(1rem + 1.5vw);
+  --large: calc(2rem + 3vw);
+  --x-large: calc(2rem + 5vw);
+  --icons: calc(1rem + 2vw);
+  --accent-mod: var(--color-1);
 }
 
 button,
@@ -24,25 +26,24 @@ a {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
-.smooth-scroll-wrapper {
-  min-height: 100vh;
-}
+
 ::-webkit-scrollbar {
   display: none;
 }
+
 html,
 body,
 * {
   cursor: none;
 }
+
 #mouse {
-  height: calc(1rem + 1vw);
+  height: var(--small);
   aspect-ratio: 1;
   position: fixed;
   rotate: -45deg;
   z-index: 900;
   pointer-events: none;
-  top: -100vw;
 }
 
 @media (width < 800px) {
@@ -58,9 +59,10 @@ body,
 
 body {
   overflow-x: clip;
-  -ms-overflow-style: none; /* IE and Edge */
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 #loader {
   position: fixed;
   width: 100vw;
@@ -114,9 +116,9 @@ header {
 #menu {
   position: absolute;
   top: -3em;
-
+  display: none;
   z-index: 20;
-  font-size: calc(2rem + 3vw);
+  font-size: var(--large);
   width: 2em;
   aspect-ratio: 1;
   & div {
@@ -156,19 +158,20 @@ header {
   color: var(--accent-mod);
   transition: scale 0.3s;
 }
+
 #menu:hover::before {
   scale: 1.05;
 }
 
 .box {
-  font-size: calc(2rem + 5vw);
+  font-size: var(--x-large);
 
   position: absolute;
   overflow: clip;
   width: 50vw;
   height: 50vh;
   & h1 {
-    font-size: calc(2rem + 5vw);
+    font-size: var(--x-large);
     position: absolute;
     white-space: nowrap;
     text-transform: uppercase;
@@ -234,9 +237,16 @@ header {
 
 @media (width < 800px) {
   .box {
-    font-size: calc(2rem + 3vw);
+    font-size: var(--large);
     width: 100vw;
     height: 25vh;
+    height: 25lvh;
+    & h1 {
+      font-size: var(--large);
+      bottom: unset !important;
+      top: 50% !important;
+      translate: 0 -50%;
+    }
   }
 
   #box1 {
@@ -262,117 +272,113 @@ header {
   }
 }
 
-#link-list {
-  position: absolute;
-  font-size: calc(1rem + 2vw);
-  top: 100%;
-  margin-top: -5px;
+#icon-list {
+  font-size: var(--icons);
   width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  color: var(--accent-4);
-  padding: 0 1em;
-  height: 3em;
-  align-items: center;
-  background-color: var(--accent-1);
+  color: var(--color-4);
+  padding: 1em 1em 0 1em;
+
+  background-color: var(--color-1);
+  > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   & svg {
     height: 1em;
-    fill: var(--accent-4);
+    fill: var(--color-4);
   }
-  > div {
+  > div > div {
     display: flex;
     gap: 0.8em;
   }
-  > div,
-  #eyeball {
-    z-index: 20;
-  }
 }
 
-#about {
-  font-size: calc(1rem + 1.5vw);
+section {
+  font-size: var(--medium);
   width: 100vw;
-  position: absolute;
-  margin-top: 3em;
   z-index: 50;
-  background-color: var(--accent-4);
-  color: var(--accent-1);
+  background-color: var(--color-4);
+  color: var(--color-1);
 
   & h2 {
     font-weight: 600;
   }
   & p:not(footer p) {
     font-weight: 250;
-    font-size: calc(1rem + 1vw);
+    font-size: var(--small);
   }
-  .con:first-of-type p:nth-of-type(1) {
+  .con1 p:nth-of-type(1) {
     margin-bottom: 7em;
   }
-  .con:first-of-type p:nth-of-type(2) {
+  .con1 p:nth-of-type(2) {
     margin-bottom: 1.5em;
     width: min(40ch, 80%);
   }
-  .con:first-of-type p:nth-of-type(3) {
+  .con1 p:nth-of-type(3) {
     margin-bottom: 7em;
     width: min(40ch, 80%);
   }
 
-  .con:last-of-type p:nth-of-type(1) {
+  .con2 p:nth-of-type(1) {
     margin-top: 3em;
     margin-bottom: 2em;
   }
-  .con:last-of-type p:nth-of-type(2) {
+  .con2 p:nth-of-type(2) {
     margin-bottom: 2em;
     width: min(30ch, 80%);
   }
-  .con {
+  .con1,
+  .con2 {
     padding: 1em 2em;
     position: relative;
     overflow: clip;
   }
 
-  .con:first-of-type .dec {
+  .con1 .dec1 {
     position: absolute;
     width: 10em;
     aspect-ratio: 1;
-    border: 2em solid var(--accent-3);
-    right: -3em;
+    border: 2em solid var(--color-3);
+    left: 100%;
     bottom: 10.5em;
   }
-  .con:first-of-type .dec2 {
+  .con1 .dec2 {
     position: absolute;
     width: 12em;
     aspect-ratio: 1;
-    border: 2em solid var(--accent-2);
-    right: -4em;
+    border: 2em solid var(--color-2);
+    left: 85%;
     bottom: 4em;
   }
-  .con:last-of-type {
+  .con2 {
     width: 100vw;
-    color: var(--accent-4);
-    background-color: var(--accent-1);
+    color: var(--color-4);
+    background-color: var(--color-1);
     padding-bottom: 11em;
   }
-  .con:last-of-type button:first-of-type {
+  .con2 button:first-of-type {
     padding: 0.4em 0.8em;
     font-weight: 250;
-    font-size: calc(1rem + 1vw);
-    color: var(--accent-1);
-    background-color: var(--accent-4);
+    font-size: var(--small);
+    color: var(--color-1);
+    background-color: var(--color-4);
   }
-  .con:last-of-type .dec {
+  .con2 .dec1 {
     position: absolute;
     width: 15em;
     aspect-ratio: 1;
-    border: 2em solid var(--accent-3);
+    border: 2em solid var(--color-3);
     left: 5em;
     bottom: -14em;
   }
-  .con:last-of-type .dec2 {
+  .con2 .dec2 {
     position: absolute;
     width: 20em;
     aspect-ratio: 1;
-    border: 2em solid var(--accent-2);
+    border: 2em solid var(--color-2);
     left: -4em;
     bottom: -13em;
   }
@@ -381,10 +387,12 @@ header {
     width: 2em;
     aspect-ratio: 1;
     bottom: 2em;
-    right: 7em;
-    border-left: 0.8em solid var(--accent-4);
-    border-top: 0.8em solid var(--accent-4);
+    right: 10%;
+    background-color: transparent;
+    border-left: 0.8em solid var(--color-4);
+    border-top: 0.8em solid var(--color-4);
     rotate: 45deg;
+    z-index: 40;
   }
 }
 
@@ -392,8 +400,10 @@ footer {
   padding: 1em 0;
   display: flex;
   justify-content: space-around;
-  font-size: calc(1rem + 0.5vw);
+  font-size: var(--x-small);
   font-weight: 200;
+  background-color: var(--color-4);
+  color: var(--color-1);
 }
 
 @media (width < 800px) {
@@ -402,9 +412,18 @@ footer {
     align-items: center;
     gap: 0.3em;
   }
+  .con1 .dec1 {
+    left: 90% !important;
+  }
+  .con2 .dec1 {
+    bottom: -10em !important;
+  }
+  .con2 .dec2 {
+    bottom: -12em !important;
+  }
 }
 
 .hidden,
-#link-list {
+#icon-list {
   display: none;
 }
