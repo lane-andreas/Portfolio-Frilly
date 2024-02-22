@@ -180,6 +180,7 @@ window.addEventListener("resize", updateDisplayOnThresholdCross);
 updateDisplayOnThresholdCross();
 
 // MENU INTERACTION //
+let scrolled = false;
 
 function headerExpand(element, absolute, area, accent1, accent2) {
   element.addEventListener("click", function () {
@@ -216,8 +217,20 @@ function headerExpand(element, absolute, area, accent1, accent2) {
       document.querySelector("#icon-list").style.display = "flex";
       document.querySelector(area).style.display = "block";
       setTimeout(function () {
+        if (scrolled == false) {
+          document.querySelector("#scroll-indicator").style.opacity = "1";
+          document.querySelector("#scroll-indicator").style.bottom = "120%";
+        }
+        scrolled = true;
+        window.addEventListener("scroll", (e) => {
+          if (window.scrollY >= 50) {
+            document.querySelector("#scroll-indicator").style.opacity = "";
+            document.querySelector("#scroll-indicator").style.bottom = "";
+          }
+        });
+
         menu.style.transition = "none";
-      }, 1000);
+      }, 3000);
     }, 1000);
   });
 }

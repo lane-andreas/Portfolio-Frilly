@@ -308,6 +308,7 @@ header {
 }
 
 #icon-list {
+  position: relative;
   font-size: var(--icons);
   width: 100vw;
   color: var(--accent-2);
@@ -733,5 +734,46 @@ form {
     stroke-width: 4em !important;
     left: 10% !important;
     bottom: -10% !important;
+  }
+}
+
+#scroll-indicator {
+  height: 1.5em;
+  aspect-ratio: 5 / 9;
+  border: 3px solid var(--accent-2);
+  border-radius: 0.5em;
+  position: absolute;
+  z-index: 30;
+  bottom: 0;
+  opacity: 0;
+  left: 50%;
+  transition: bottom 1s, opacity 1s;
+  &::before {
+    content: "";
+    width: 0.2em;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 0.2em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-2);
+    border-radius: 50%;
+    opacity: 1;
+    animation: wheel 2s infinite;
+    -webkit-animation: wheel 2s infinite;
+  }
+}
+
+@keyframes wheel {
+  to {
+    opacity: 0;
+    top: 1em;
+  }
+}
+
+@-webkit-keyframes wheel {
+  to {
+    opacity: 0;
+    top: 1em;
   }
 }
