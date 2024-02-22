@@ -217,7 +217,7 @@ function headerExpand(element, absolute, area, accent1, accent2) {
       document.querySelector("#icon-list").style.display = "flex";
       document.querySelector(area).style.display = "block";
       setTimeout(function () {
-        if (scrolled == false) {
+        if (scrolled == false && window.scrollY < 50) {
           document.querySelector("#scroll-indicator").style.opacity = "1";
           document.querySelector("#scroll-indicator").style.bottom = "120%";
         }
