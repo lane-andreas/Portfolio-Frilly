@@ -11,7 +11,6 @@
   --large: calc(2rem + 3vw);
   --x-large: calc(2rem + 5vw);
   --icons: calc(1rem + 2vw);
-  --accent-mod: var(--color-1);
 }
 
 button,
@@ -38,6 +37,10 @@ body,
 * {
   scroll-behavior: smooth;
   cursor: none;
+}
+
+body {
+  background-color: var(--accent-1);
 }
 
 #mouse {
@@ -92,8 +95,8 @@ body {
   left: 0;
   bottom: 0;
   z-index: 101;
-  background-color: var(--color-1);
-  color: var(--color-4);
+  background-color: var(--accent-1);
+  color: var(--accent-2);
   display: none;
   font-size: var(--medium);
   font-weight: 800;
@@ -178,12 +181,13 @@ header {
   translate: -50%;
   font-size: 0.5em;
   font-weight: 800;
-  color: var(--accent-mod);
+  color: var(--accent-2);
   transition: scale 0.3s;
 }
 
 #menu:hover::before {
   scale: 1.05;
+  transition: scale 0.15s;
 }
 
 .box {
@@ -208,6 +212,7 @@ header {
 
 .hover:hover {
   scale: 1.05;
+  transition: scale 0.15s;
 }
 
 #box1 {
@@ -299,10 +304,10 @@ header {
 #icon-list {
   font-size: var(--icons);
   width: 100vw;
-  color: var(--color-4);
+  color: var(--accent-2);
   padding: 1em 1em 0 1em;
 
-  background-color: var(--color-1);
+  background-color: var(--accent-1);
   > div {
     width: 100%;
     display: flex;
@@ -312,7 +317,7 @@ header {
 
   & svg {
     height: 1em;
-    fill: var(--color-4);
+    fill: var(--accent-2);
   }
   > div > div {
     display: flex;
@@ -324,8 +329,8 @@ section {
   font-size: var(--medium);
   width: 100vw;
   z-index: 50;
-  background-color: var(--color-4);
-  color: var(--color-1);
+  background-color: var(--accent-2);
+  color: var(--accent-1);
 
   & h2 {
     font-weight: 600;
@@ -352,11 +357,11 @@ section {
   }
   .con2 p:nth-of-type(2) {
     margin-bottom: 2em;
-    width: min(30ch, 80%);
+    width: min(40ch, 80%);
   }
   .con1,
   .con2 {
-    padding: 1em 2em;
+    padding: 1.5em 2em;
     position: relative;
     overflow: clip;
   }
@@ -379,16 +384,16 @@ section {
   }
   .con2 {
     width: 100vw;
-    color: var(--color-4);
-    background-color: var(--color-1);
+    color: var(--accent-2);
+    background-color: var(--accent-1);
     padding-bottom: 11em;
   }
   .con2 button:first-of-type {
     padding: 0.4em 0.8em;
     font-weight: 250;
     font-size: var(--small);
-    color: var(--color-1);
-    background-color: var(--color-4);
+    color: var(--accent-1);
+    background-color: var(--accent-2);
   }
   .con2 .dec1 {
     position: absolute;
@@ -413,10 +418,60 @@ section {
     bottom: 2em;
     right: 10%;
     background-color: transparent;
-    border-left: 0.8em solid var(--color-4);
-    border-top: 0.8em solid var(--color-4);
+    border-left: 0.8em solid var(--accent-2);
+    border-top: 0.8em solid var(--accent-2);
     rotate: 45deg;
     z-index: 40;
+  }
+}
+
+#skills {
+  & p {
+    margin-left: auto;
+  }
+  text-align: right;
+  .con1 .dec3 {
+    position: absolute;
+    width: 12em;
+    aspect-ratio: 1;
+    border: 2em solid var(--color-1);
+    right: 100%;
+    bottom: 12em;
+    border-radius: 50%;
+    z-index: 20;
+  }
+  .con1 .dec4 {
+    border-radius: 50%;
+    position: absolute;
+    width: 17em;
+    aspect-ratio: 1;
+    border: 2em solid var(--color-4);
+    right: 80%;
+    bottom: 2em;
+  }
+
+  .con2 .dec3 {
+    border-radius: 50%;
+    position: absolute;
+    width: 12em;
+    aspect-ratio: 1;
+    border: 2em solid var(--color-1);
+    right: 8em;
+    bottom: -10em;
+    z-index: 20;
+  }
+  .con2 .dec4 {
+    border-radius: 50%;
+    position: absolute;
+    width: 20em;
+    aspect-ratio: 1;
+    border: 2em solid var(--color-4);
+    right: -4em;
+    bottom: -13em;
+  }
+  .back-to-top {
+    right: unset;
+    left: 10%;
   }
 }
 
@@ -426,8 +481,8 @@ footer {
   justify-content: space-around;
   font-size: var(--x-small);
   font-weight: 300;
-  background-color: var(--color-4);
-  color: var(--color-1);
+  background-color: var(--accent-2);
+  color: var(--accent-1);
 }
 
 @media (width < 800px) {
@@ -444,6 +499,14 @@ footer {
   }
   .con2 .dec2 {
     bottom: -12em !important;
+  }
+
+  .con1 .dec3 {
+    right: 88% !important;
+  }
+
+  .con2 .dec3 {
+    bottom: -8em !important;
   }
 }
 

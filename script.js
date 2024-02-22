@@ -7,6 +7,8 @@ const loader = document.querySelector("#loader");
 const mouse = document.querySelector("#mouse");
 const boxes = document.querySelectorAll(".box");
 const hiddens = document.querySelectorAll(".hidden");
+const root = document.documentElement;
+
 // ANIMATIONS //
 
 if (window.innerWidth >= 800) {
@@ -26,8 +28,8 @@ if (window.innerWidth >= 800) {
     }
 
     headerAnimation();
-    updateDec1Elements();
-    updateDec2Elements();
+    updateMove1Elements();
+    updateMove2Elements();
   }
 
   document.addEventListener("mousemove", handleEvent);
@@ -55,8 +57,8 @@ if (window.innerWidth >= 800) {
 
   smoothScroll();
 
-  function updateDec1Elements() {
-    const decElements = document.querySelectorAll(".dec1");
+  function updateMove1Elements() {
+    const decElements = document.querySelectorAll(".move1");
     decElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       const elX = rect.left + rect.width / 2;
@@ -76,8 +78,8 @@ if (window.innerWidth >= 800) {
     });
   }
 
-  function updateDec2Elements() {
-    const decElements = document.querySelectorAll(".dec2");
+  function updateMove2Elements() {
+    const decElements = document.querySelectorAll(".move2");
     decElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       const elX = rect.left + rect.width / 2;
@@ -176,17 +178,16 @@ updateDisplayOnThresholdCross();
 
 // MENU INTERACTION //
 
-function headerExpand(element, absolute, area) {
+function headerExpand(element, absolute, area, accent1, accent2) {
   element.addEventListener("click", function () {
     pauseAnimation();
+    root.style.setProperty("--accent-1", accent1);
+    root.style.setProperty("--accent-2", accent2);
+
     menu.style.display = "block";
     menu.style.removeProperty("left");
     menu.style.removeProperty("right");
     menu.style[absolute] = 0;
-    document.documentElement.style.setProperty(
-      "--accent-mod",
-      "var(--accent-2)"
-    );
     addToBoxes("pointerEvents", "none");
     element.style.width = "100vw";
     element.style.height = "100vh";
@@ -199,7 +200,7 @@ function headerExpand(element, absolute, area) {
     setTimeout(function () {
       menu.style.pointerEvents = "all";
       element.style.transition = "none";
-      element.style.height = "101vh";
+      element.style.height = "calc(100vh + 10px)";
       element.style.bottom = "unset";
       menu.style.top = 0;
       menu.style.transition = "top 1s";
@@ -213,10 +214,10 @@ function headerExpand(element, absolute, area) {
   });
 }
 
-headerExpand(box1, "right", "#about");
-headerExpand(box2, "left", "#skills");
-headerExpand(box3, "right", "#projects");
-headerExpand(box4, "left", "#contact");
+headerExpand(box1, "right", "#about", "var(--color-1)", "var(--color-4)");
+headerExpand(box2, "left", "#skills", "var(--color-2)", "var(--color-3)");
+headerExpand(box3, "right", "#projects", "var(--color-3)", "var(--color-2)");
+headerExpand(box4, "left", "#contact", "var(--color-4)", "var(--color-1)");
 
 menu.addEventListener("click", function () {
   addToBoxes("pointerEvents", "none");
@@ -248,6 +249,18 @@ function addToBoxes(propertyName, property) {
     box.style[propertyName] = property;
   });
 }
+let colorsChanged = false;
+document.getElementById("eyeball").addEventListener("click", function () {
+  if (!colorsChanged) {
+    root.style.setProperty("--color-2", "#FFE9E5");
+    root.style.setProperty("--color-3", "#A40062");
+    colorsChanged = true;
+  } else {
+    root.style.setProperty("--color-2", "#fcb1a6");
+    root.style.setProperty("--color-3", "#fb6376");
+    colorsChanged = false;
+  }
+});
 
 function removeFromAny(listName, propertyName) {
   listName.forEach((item) => {
