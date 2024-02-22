@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 :root {
   --color-1: #ffdccc;
   --color-2: #fcb1a6;
@@ -13,6 +20,38 @@
   --icons: calc(1rem + 2vw);
 }
 
+::-webkit-input-placeholder {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+  font-weight: inherit;
+}
+
+::-moz-placeholder {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+  font-weight: inherit;
+}
+
+:-ms-input-placeholder {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+  font-weight: inherit;
+}
+
+::-ms-input-placeholder {
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+  font-weight: inherit;
+}
+
 button,
 a,
 input,
@@ -26,6 +65,7 @@ textarea,
 }
 
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -86,6 +126,7 @@ body {
   border-left: 50vw solid white;
   border-top: 50vh solid white;
   border-bottom: 50vh solid white;
+  -webkit-animation: loaderout 1s 0.5s forwards;
   animation: loaderout 1s 0.5s forwards;
   pointer-events: none;
 }
@@ -103,13 +144,33 @@ body {
   color: var(--accent-2);
   opacity: 0;
   pointer-events: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: var(--medium);
   font-weight: 800;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 1em;
   text-align: center;
+}
+@-webkit-keyframes loaderout {
+  from {
+    border-right: 50vw solid white;
+    border-left: 50vw solid white;
+    border-top: 50vh solid white;
+    border-bottom: 50vh solid white;
+  }
+  to {
+    border-right: 0 solid white;
+    border-left: 0 solid white;
+    border-top: 0 solid white;
+    border-bottom: 0 solid white;
+  }
 }
 @keyframes loaderout {
   from {
@@ -123,6 +184,20 @@ body {
     border-left: 0 solid white;
     border-top: 0 solid white;
     border-bottom: 0 solid white;
+  }
+}
+@-webkit-keyframes loaderin {
+  from {
+    border-right: 0 solid white;
+    border-left: 0 solid white;
+    border-top: 0 solid white;
+    border-bottom: 0 solid white;
+  }
+  to {
+    border-right: 50vw solid white;
+    border-left: 50vw solid white;
+    border-top: 50vh solid white;
+    border-bottom: 50vh solid white;
   }
 }
 @keyframes loaderin {
@@ -188,11 +263,15 @@ header {
   font-size: 0.5em;
   font-weight: 800;
   color: var(--accent-2);
+  -webkit-transition: scale 0.3s;
+  -o-transition: scale 0.3s;
   transition: scale 0.3s;
 }
 
 #menu:hover::before {
   scale: 1.05;
+  -webkit-transition: scale 0.15s;
+  -o-transition: scale 0.15s;
   transition: scale 0.15s;
 }
 
@@ -213,11 +292,15 @@ header {
 }
 
 .hover {
+  -webkit-transition: scale 0.3s;
+  -o-transition: scale 0.3s;
   transition: scale 0.3s;
 }
 
 .hover:hover {
   scale: 1.05;
+  -webkit-transition: scale 0.15s;
+  -o-transition: scale 0.15s;
   transition: scale 0.15s;
 }
 
@@ -317,8 +400,14 @@ header {
   background-color: var(--accent-1);
   > div {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
@@ -327,6 +416,8 @@ header {
     fill: var(--accent-2);
   }
   > div > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: 0.8em;
   }
@@ -435,7 +526,12 @@ section {
   footer {
     font-weight: 250 !important;
     font-size: calc(var(--small) * 0.8) !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 0.5em;
   }
@@ -503,7 +599,10 @@ section {
 
 footer {
   padding: 1em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
   font-size: var(--x-small);
   font-weight: 300;
@@ -530,8 +629,15 @@ footer {
   margin-bottom: 3em;
   font-size: var(--small);
   font-weight: 250;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   width: min(1100px, 100%);
   margin-inline: auto;
@@ -540,8 +646,14 @@ footer {
     background-color: var(--accent-1);
     width: 100%;
     aspect-ratio: 16 / 7;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     color: var(--accent-2);
     & p {
@@ -550,16 +662,28 @@ footer {
   }
   .skills-list {
     z-index: 25;
+    -ms-flex-item-align: start;
     align-self: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
     flex-flow: row wrap;
     gap: 1em;
     padding: 0.6em 0;
   }
   .skill {
     z-index: 25;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
   & iconify-icon {
@@ -578,8 +702,14 @@ footer {
   }
   .link-list {
     z-index: 25;
+    -ms-flex-item-align: start;
     align-self: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
     flex-flow: row wrap;
     gap: 1em;
     white-space: nowrap;
@@ -587,6 +717,10 @@ footer {
 }
 
 #projects {
+  .con2 p:nth-of-type(1) {
+    width: min(40ch, 80%);
+    margin-top: 1em;
+  }
   .con1 .dec5 {
     position: absolute;
     width: 200vw;
@@ -677,7 +811,12 @@ form {
   padding: 2em 0;
   font-size: var(--small);
   font-weight: 250;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1em;
   width: min(30ch, 100%);
@@ -690,9 +829,35 @@ form {
   & textarea {
     z-index: 25;
     height: 1.5em;
+    -webkit-transition: height 0.3s;
+    -o-transition: height 0.3s;
     transition: height 0.3s;
     resize: none;
     overflow-y: hidden;
+  }
+  & button {
+    z-index: 25;
+    margin-top: 1em;
+    background-color: var(--color-4);
+    color: var(--color-1);
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+  }
+  & ::-webkit-input-placeholder {
+    z-index: 25;
+    border: none;
+  }
+  & ::-moz-placeholder {
+    z-index: 25;
+    border: none;
+  }
+  & :-ms-input-placeholder {
+    z-index: 25;
+    border: none;
+  }
+  & ::-ms-input-placeholder {
+    z-index: 25;
+    border: none;
   }
   & ::placeholder {
     z-index: 25;
@@ -707,17 +872,8 @@ form {
   textarea:-webkit-autofill:focus,
   textarea:-webkit-autofill:active {
     padding-left: 0.5em;
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-4) inset !important; /* Change white to desired background color */
-    -webkit-text-fill-color: var(
-      --color-1
-    ) !important; /* Change black to desired text color */
-  }
-  & button {
-    z-index: 25;
-    margin-top: 1em;
-    background-color: var(--color-4);
-    color: var(--color-1);
-    align-self: flex-end;
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-4) inset !important;
+    -webkit-text-fill-color: var(--color-1) !important;
   }
 }
 
@@ -747,6 +903,8 @@ form {
   bottom: 0;
   opacity: 0;
   left: 50%;
+  -webkit-transition: bottom 1s, opacity 1s;
+  -o-transition: bottom 1s, opacity 1s;
   transition: bottom 1s, opacity 1s;
   &::before {
     content: "";
@@ -755,6 +913,8 @@ form {
     position: absolute;
     top: 0.2em;
     left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     background-color: var(--accent-2);
     border-radius: 50%;
