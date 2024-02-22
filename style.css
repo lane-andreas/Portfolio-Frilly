@@ -843,26 +843,6 @@ form {
     -ms-flex-item-align: end;
     align-self: flex-end;
   }
-  & ::-webkit-input-placeholder {
-    z-index: 25;
-    border: none;
-  }
-  & ::-moz-placeholder {
-    z-index: 25;
-    border: none;
-  }
-  & :-ms-input-placeholder {
-    z-index: 25;
-    border: none;
-  }
-  & ::-ms-input-placeholder {
-    z-index: 25;
-    border: none;
-  }
-  & ::placeholder {
-    z-index: 25;
-    border: none;
-  }
   & input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
