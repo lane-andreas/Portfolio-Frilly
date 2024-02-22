@@ -37,13 +37,14 @@ if (window.innerWidth >= 800) {
     mouse.style.left = lastMouseX + "px";
     mouse.style.top = lastMouseY + offset + "px";
 
-    if (window.innerWidth >= 800) {
-      updateAnimationTargets();
-    }
+    updateAnimationTargets();
+    updateDecElements();
+    updateDec2Elements();
   });
 }
-
+let updateAnimationTargetsTimeline = gsap.timeline({ paused: false });
 function updateAnimationTargets() {
+  updateAnimationTargetsTimeline.clear();
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
@@ -56,39 +57,41 @@ function updateAnimationTargets() {
   const desiredBox4Width = vw - mouseX;
   const desiredBox4Height = vh - mouseY;
 
-  gsap.to(box1, {
-    width: desiredBox1Width,
-    height: desiredBox1Height,
-    duration: 0.5,
-  });
-  gsap.to(box2, {
-    width: desiredBox2Width,
-    height: desiredBox2Height,
-    duration: 0.5,
-  });
-  gsap.to(box3, {
-    width: desiredBox3Width,
-    height: desiredBox3Height,
-    duration: 0.5,
-  });
-  gsap.to(box4, {
-    width: desiredBox4Width,
-    height: desiredBox4Height,
-    duration: 0.5,
-  });
+  updateAnimationTargetsTimeline
+    .to(box1, {
+      width: desiredBox1Width,
+      height: desiredBox1Height,
+      duration: 0.5,
+    })
+    .to(
+      box2,
+      { width: desiredBox2Width, height: desiredBox2Height, duration: 0.5 },
+      "<"
+    )
+    .to(
+      box3,
+      { width: desiredBox3Width, height: desiredBox3Height, duration: 0.5 },
+      "<"
+    )
+    .to(
+      box4,
+      { width: desiredBox4Width, height: desiredBox4Height, duration: 0.5 },
+      "<"
+    );
 }
 
 function pauseAnimation() {
-  gsap.globalTimeline.pause();
+  updateAnimationTargetsTimeline.pause();
 }
 
 function resumeAnimation() {
-  gsap.globalTimeline.resume();
+  updateAnimationTargetsTimeline.resume();
 }
 
-function makeElementCoverViewportOnClick(element, absolute, colorM) {
+function makeElementCoverViewportOnClick(element, absolute, colorM, area) {
   element.addEventListener("click", function () {
     pauseAnimation();
+
     menu.style.removeProperty("left");
     menu.style.removeProperty("right");
     menu.style[absolute] = 0;
@@ -105,17 +108,19 @@ function makeElementCoverViewportOnClick(element, absolute, colorM) {
     if (window.innerWidth < 800) {
       element.style.top = 0;
 
-      element.querySelector("p").style.transition = "padding-top 1s";
-      element.querySelector("p").style.paddingTop = "4em";
+      element.querySelector("h1").style.transition = "padding-top 1s";
+      element.querySelector("h1").style.paddingTop = "4em";
     }
     setTimeout(function () {
       menu.style.pointerEvents = "all";
       element.style.transition = "none";
-      element.style.height = "130vh";
+      element.style.height = "105vh";
       element.style.bottom = "unset";
       menu.style.top = 0;
-      element.querySelector("p").style.paddingBottom = "30vh";
+      element.querySelector("h1").style.paddingBottom = "5vh";
       menu.style.transition = "top 1s";
+      document.querySelector(area).style.display = "block";
+      document.querySelector("#link-list").style.display = "flex";
       setTimeout(function () {
         menu.style.transition = "none";
       }, 1000);
@@ -123,7 +128,7 @@ function makeElementCoverViewportOnClick(element, absolute, colorM) {
   });
 }
 
-makeElementCoverViewportOnClick(box1, "right", "#5d2a42");
+makeElementCoverViewportOnClick(box1, "right", "#5d2a42", "#about");
 makeElementCoverViewportOnClick(box2, "left", "#fb6376");
 makeElementCoverViewportOnClick(box3, "right", "#fcb1a6");
 makeElementCoverViewportOnClick(box4, "left", "#ffdccc");
@@ -136,6 +141,8 @@ menu.addEventListener("click", function () {
   menu.style.pointerEvents = "none";
   loader.style.animation = "loaderin .75s forwards";
   setTimeout(function () {
+    document.querySelector("#about").style.display = "none";
+    document.querySelector("#link-list").style.display = "none";
     menu.style.top = "-3em";
     box1.style.zIndex = "1";
     box2.style.zIndex = "1";
@@ -145,10 +152,10 @@ menu.addEventListener("click", function () {
     box2.style.removeProperty("bottom");
     box3.style.removeProperty("bottom");
     box4.style.removeProperty("bottom");
-    box1.querySelector("p").style.removeProperty("padding-bottom");
-    box2.querySelector("p").style.removeProperty("padding-bottom");
-    box3.querySelector("p").style.removeProperty("padding-bottom");
-    box4.querySelector("p").style.removeProperty("padding-bottom");
+    box1.querySelector("h1").style.removeProperty("padding-bottom");
+    box2.querySelector("h1").style.removeProperty("padding-bottom");
+    box3.querySelector("h1").style.removeProperty("padding-bottom");
+    box4.querySelector("h1").style.removeProperty("padding-bottom");
     box1.style.pointerEvents = "all";
     box2.style.pointerEvents = "all";
     box3.style.pointerEvents = "all";
@@ -156,14 +163,14 @@ menu.addEventListener("click", function () {
 
     loader.style.animation = "loaderout .75s forwards";
     if (window.innerWidth < 800) {
-      box1.querySelector("p").style.removeProperty("transition");
-      box1.querySelector("p").style.paddingTop = "0";
-      box2.querySelector("p").style.removeProperty("transition");
-      box2.querySelector("p").style.paddingTop = "0";
-      box3.querySelector("p").style.removeProperty("transition");
-      box3.querySelector("p").style.paddingTop = "0";
-      box4.querySelector("p").style.removeProperty("transition");
-      box4.querySelector("p").style.paddingTop = "0";
+      box1.querySelector("h1").style.removeProperty("transition");
+      box1.querySelector("h1").style.paddingTop = "0";
+      box2.querySelector("h1").style.removeProperty("transition");
+      box2.querySelector("h1").style.paddingTop = "0";
+      box3.querySelector("h1").style.removeProperty("transition");
+      box3.querySelector("h1").style.paddingTop = "0";
+      box4.querySelector("h1").style.removeProperty("transition");
+      box4.querySelector("h1").style.paddingTop = "0";
       box1.style.removeProperty("top");
       box2.style.removeProperty("top");
       box3.style.removeProperty("top");
@@ -197,3 +204,49 @@ function smoothScroll() {
 }
 
 smoothScroll();
+
+function updateDecElements() {
+  const decElements = document.querySelectorAll(".dec");
+  decElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const elX = rect.left + rect.width / 2; // Element center X
+    const elY = rect.top + rect.height / 2; // Element center Y
+    const diffX = mouseX - elX;
+    const diffY = mouseY - elY;
+
+    // Calculate how much the element should move
+    const moveX = diffX * 0.2; // Adjust the multiplier for the desired effect
+    const moveY = diffY * 0.2; // Adjust the multiplier for the desired effect
+
+    // Use GSAP to animate the element
+    gsap.to(el, {
+      x: moveX,
+      y: moveY,
+      duration: 0.5,
+      ease: "power1.out",
+    });
+  });
+}
+
+function updateDec2Elements() {
+  const decElements = document.querySelectorAll(".dec2");
+  decElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const elX = rect.left + rect.width / 2; // Element center X
+    const elY = rect.top + rect.height / 2; // Element center Y
+    const diffX = mouseX - elX;
+    const diffY = mouseY - elY;
+
+    // Calculate how much the element should move
+    const moveX = diffX * 0.05; // Adjust the multiplier for the desired effect
+    const moveY = diffY * 0.05; // Adjust the multiplier for the desired effect
+
+    // Use GSAP to animate the element
+    gsap.to(el, {
+      x: moveX,
+      y: moveY,
+      duration: 0.5,
+      ease: "power1.out",
+    });
+  });
+}
